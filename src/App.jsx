@@ -4,6 +4,10 @@ import { StoreProvider } from "./store/StoreContext";
 import PageNotFound from "./components/partials/PageNotFound";
 import Home from "./components/pages/developer/ui/home/Home";
 import Single from "./components/pages/developer/ui/single/Single";
+import DashboardHome from "./components/pages/developer/dashboard/database_management/DashboardHome";
+import ProtectedRoute from "./components/pages/developer/access/ProtectedRoute";
+import Login from "./components/pages/developer/access/Login";
+import UsersHome from "./components/pages/developer/dashboard/database_management/Users/UsersHome";
 
 function App() {
 	const queryClient = new QueryClient();
@@ -30,6 +34,23 @@ function App() {
 							<Route
 								path='/*'
 								element={<PageNotFound />}
+							/>
+							{/* if url is undef */}
+							<Route
+								path='/post'
+								element={<PageNotFound />}
+							/>
+							<Route
+								path='/users'
+								element={<UsersHome />}
+							/>
+							<Route
+								path='/dashboard'
+								element={
+									// <ProtectedRoute>
+									<DashboardHome />
+									// </ProtectedRoute>
+								}
 							/>
 						</Routes>
 					</Router>

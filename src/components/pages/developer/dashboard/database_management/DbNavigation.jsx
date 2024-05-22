@@ -15,17 +15,17 @@ const DbNavigation = ({ pageHandler, setPageHanlder }) => {
 		<>
 			<aside className='px-4 py-6 w-[250px] h-screen border-r  border-line'>
 				{/* fixed top-0 */}
-				<div className='flex items-center gap-5'>
+				<div className='flex flex-col items-center justify-center gap-5'>
 					<DbLogo />
-					<h2 className='mb-0  text-justify transition-all duration-500'>
-						Saavedra Portfolio: {pageHandler}
+					<h2 className='mb-0 text-balance w-full px-5  text-justify transition-all duration-500'>
+						Bloge Posting
 					</h2>
 				</div>
 				<ul className='dbnav'>
 					<li className='dbnav-link'>
 						<button className='flex items-center'>
 							<CiGlobe />
-							<Link to='/home'>Portfolio</Link>
+							<Link to='/home'>Main Website</Link>
 						</button>
 					</li>
 					<li
@@ -33,45 +33,17 @@ const DbNavigation = ({ pageHandler, setPageHanlder }) => {
 							pageHandler === "Dashboard" ? "active" : "font-medium"
 						}`}>
 						<RxDashboard />
-						<button onClick={() => handleChangeTab("Dashboard")}>
+						<button onClick={() => handleChangeTab("dashboard")}>
 							<Link to='/dashboard'>Dashboard</Link>
 						</button>
 					</li>
 					<li
 						className={`dbnav-link ${
-							pageHandler === "Home" ? "active" : "font-medium"
+							pageHandler === "post" ? "active" : "font-medium"
 						}`}>
-						<IoIosHome />
-						<button onClick={() => handleChangeTab("Home")}>
-							{" "}
-							<Link to='/HeroDb'>Home</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link ${
-							pageHandler === "About" ? "active" : "font-medium"
-						}`}>
-						<MdOutlineMedicalInformation />
-						<button onClick={() => handleChangeTab("About")}>
-							<Link to='/AboutDb'>About</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link ${
-							pageHandler === "Experience" ? "active" : "font-medium"
-						}`}>
-						<MdEmojiEvents />
-						<button onClick={() => handleChangeTab("Experience")}>
-							<Link to='/ExperienceDb'>Experience</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link ${
-							pageHandler === "Contacts" ? "active" : "font-medium"
-						}`}>
-						<BiPhoneCall />
-						<button onClick={() => handleChangeTab("Contacts")}>
-							<Link to='/ContactsDb'>Contacts</Link>
+						<BiUserCircle />
+						<button onClick={() => handleChangeTab("post")}>
+							<Link to='/post'>Post</Link>
 						</button>
 					</li>
 					<li

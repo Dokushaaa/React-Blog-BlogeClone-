@@ -198,6 +198,30 @@
   article ul {
     @apply list-disc list-inside space-y-2
   }
+
+  .dbnav {
+    @apply space-y-4 mt-20;
+
+    .dbnav-link {
+      @apply p-1 pl-8 flex flex-row gap-2 items-center text-lg;
+
+      a {
+        @apply p-2 flex gap-3 items-center;
+      }
+    }
+
+    .dbnav-link.active {
+      @apply border-l border-accent;
+
+      a {
+        @apply text-accent;
+      }
+    }
+
+    .dbnav-link:hover a {
+      @apply text-accent;
+    }
+  }
 }
 
 @layer components {

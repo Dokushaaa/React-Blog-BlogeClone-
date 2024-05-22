@@ -13,9 +13,9 @@ import { checkLocalStorage } from "../../../../helpers/functions-general";
 
 const DbHeader = () => {
 	const { dispatch, store } = React.useContext(StoreContext);
-	const name = store.credentials?.data.user_name;
-	const email = store.credentials?.data.user_email;
-	// console.log(store.credentials?.user_name);
+	// const name = store.credentials?.data.user_name;
+	// const email = store.credentials?.data.user_email;
+	// // console.log(store.credentials?.user_name);
 
 	const [showDropDown, setShowDropDown] = React.useState(false);
 	const handleDropDown = () => setShowDropDown(!showDropDown);
@@ -55,7 +55,7 @@ const DbHeader = () => {
 						<button
 							className='flex items-center gap-5'
 							onClick={handleDropDown}>
-							{name}
+							name
 							<LiaAngleDownSolid />
 						</button>
 						<div
@@ -67,8 +67,10 @@ const DbHeader = () => {
 								className='size-[40px] rounded-full object-cover mx-auto'
 								alt=''
 							/>
-							<h4 className='mb-1'>{name}</h4>
-							<p className='text-sm w-[150px] truncate'>{email}</p>
+							<h4 className='mb-1'>placeholder for name</h4>
+							<p className='text-sm w-[150px] truncate'>
+								placeholder for email
+							</p>
 							<ul className='flex justify-center gap-5 '>
 								<li>
 									<Link

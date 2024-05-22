@@ -13,12 +13,12 @@ const DashboardHome = () => {
 	const [itemEdit, setItemEdit] = React.useState(null);
 	const [pageHandler, setPageHanlder] = React.useState("Dashboard");
 
-	// hero counter
-	const { data: hero } = useQueryData(
-		isSearch ? "/v1/hero/search" : "/v1/hero", // endpoint
+	// post counter
+	const { data: post } = useQueryData(
+		isSearch ? "/v1/post/search" : "/v1/post", // endpoint
 		isSearch ? "post" : "get", // method
-		"hero", //key
-		// ["hero", isSearch],
+		"post", //key
+		// ["post", isSearch],
 		{
 			searchValue: keyword,
 		}
@@ -99,7 +99,7 @@ const DashboardHome = () => {
 							<button className='btn btn--accent'>
 								<Link
 									className='px-2'
-									to='http://localhost/phpmyadmin/index.php?route=/database/structure&db=react_portfoliomain'
+									to='http://localhost/phpmyadmin/index.php?route=/database/structure&db=react_bloge'
 									target='_blank'>
 									Database Link
 								</Link>
@@ -119,111 +119,22 @@ const DashboardHome = () => {
 							</button> */}
 						</div>
 						<ul className='items-count'>
-							{/* Hero DB */}
+							{/* post DB */}
 							<li className='items-card'>
-								<h1>Hero Section</h1>
+								<h1>Post Section</h1>
 								<p className='text-2xl'>
 									Items Count:
 									<span
 										className={`items-count-span px-2 ${
-											hero?.data.length === 0 ? "text-red-400" : "text-accent"
+											post?.data.length === 0 ? "text-red-400" : "text-accent"
 										}`}>
-										{hero?.data.length}
+										{post?.data.length}
 										{/* <br /> <br /> */}
-										{/* {hero?.data.map((item, key) => key == 0 && item.hero_title)} */}
+										{/* {post?.data.map((item, key) => key == 0 && item.post_title)} */}
 									</span>
 								</p>
 								<small className='underline text-stone-500'>
-									<Link to='/HeroDb'>Click here to view Home Table</Link>
-								</small>
-							</li>
-							{/* About DB */}
-							<li className='items-card'>
-								<h1>About Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											about?.data.length === 0 ? "text-red-400" : "text-accent"
-										}`}>
-										{about?.data.length}
-									</span>
-								</p>
-								<small className='underline text-stone-500'>
-									<Link to='/AboutDb'>Click here to view About Table</Link>
-								</small>
-							</li>
-							{/* experience DB */}
-							<li className='items-card'>
-								<h1>Programming Languages Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											proglang?.data.length === 0
-												? "text-red-400"
-												: "text-accent"
-										}`}>
-										{proglang?.data.length}
-									</span>
-								</p>
-							</li>
-							<li className='items-card'>
-								<h1>Projects Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											projects?.data.length === 0
-												? "text-red-400"
-												: "text-accent"
-										}`}>
-										{projects?.data.length}
-									</span>
-								</p>
-							</li>
-							<li className='items-card'>
-								<h1>Certificates Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											certs?.data.length === 0 ? "text-red-400" : "text-accent"
-										}`}>
-										{certs?.data.length}
-									</span>
-								</p>
-							</li>
-							<li className='items-card'>
-								<h1>Background Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											background?.data.length === 0
-												? "text-red-400"
-												: "text-accent"
-										}`}>
-										{background?.data.length}
-									</span>
-								</p>
-							</li>
-							{/* Hero DB */}
-							<li className='items-card'>
-								<h1>Contacts Section</h1>
-								<p className='text-2xl'>
-									Items Count:
-									<span
-										className={`items-count-span px-2 ${
-											contacts?.data.length === 0
-												? "text-red-400"
-												: "text-accent"
-										}`}>
-										{contacts?.data.length}
-									</span>
-								</p>
-								<small className='underline text-stone-500'>
-									<Link to='/ContactsDb'>Click here to view Home Table</Link>
+									<Link to='/post'>Click here to view Home Table</Link>
 								</small>
 							</li>
 						</ul>
