@@ -49,7 +49,7 @@ Class Post {
                 "post_title" => $this->post_title,
                 "post_category" => $this->post_category,
                 "post_image" => $this->post_image,
-                "post_author" => $this->post_image,
+                "post_author" => $this->post_author,
                 "post_article" => $this->post_article,
                 "post_is_active" => $this->post_is_active,
                 "post_published_date" => $this->post_published_date,

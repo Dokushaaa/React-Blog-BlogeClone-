@@ -8,6 +8,9 @@ import DashboardHome from "./components/pages/developer/dashboard/database_manag
 import ProtectedRoute from "./components/pages/developer/access/ProtectedRoute";
 import Login from "./components/pages/developer/access/Login";
 import UsersHome from "./components/pages/developer/dashboard/database_management/Users/UsersHome";
+import CreatePassword from "./components/pages/developer/access/CreatePassword";
+import ForgotPassword from "./components/pages/developer/access/ForgotPassword";
+import PostHome from "./components/pages/developer/dashboard/database_management/Post/PostHome";
 
 function App() {
 	const queryClient = new QueryClient();
@@ -38,12 +41,31 @@ function App() {
 							{/* if url is undef */}
 							<Route
 								path='/post'
-								element={<PageNotFound />}
+								element={<PostHome />}
 							/>
 							<Route
 								path='/users'
 								element={<UsersHome />}
 							/>
+							{/* route to create password */}
+							<Route
+								path='/create-password'
+								element={<CreatePassword />}
+							/>
+							{/* route to reset password */}
+							<Route
+								path='/Forgot-password'
+								element={<ForgotPassword />}
+							/>
+							<Route
+								path='/login'
+								element={<Login />}
+							/>
+							<Route
+								path='/login'
+								element={<Login />}
+							/>
+							{/* secured path to db management */}
 							<Route
 								path='/dashboard'
 								element={

@@ -28,26 +28,16 @@ const Trending = () => {
 				<div className='grid md:gap-10 mt-5 mb-10 md:grid-cols-[1fr_2fr]'>
 					<Card />
 					<div className='grid gap-10 md:grid-cols-2'>
-						<CardSM
-							description={
-								"Lorem ipsum, dolor sit amet consectetur adipisicing."
-							}
-						/>
-						<CardSM
-							description={
-								"Lorem ipsum, dolor sit amet consectetur adipisicing."
-							}
-						/>
-						<CardSM
-							description={
-								"Lorem ipsum, dolor sit amet consectetur adipisicing."
-							}
-						/>
-						<CardSM
-							description={
-								"Lorem ipsum, dolor sit amet consectetur adipisicing."
-							}
-						/>
+						{post?.data.map((item, key) => (
+							<CardSM
+								// use visibility if object does not require a category tag to be visibile
+								key={key}
+								image={item.post_image}
+								article={item.post_article}
+								category={item.post_category}
+							/>
+						))}
+
 						{/* try dito */}
 						{/* {post?.data.map((item, key) => (
 							<div

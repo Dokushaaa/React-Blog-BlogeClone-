@@ -1,7 +1,11 @@
 import React from "react";
 import { BiPhoneCall, BiUserCircle } from "react-icons/bi";
 import { IoIosHome } from "react-icons/io";
-import { MdEmojiEvents, MdOutlineMedicalInformation } from "react-icons/md";
+import {
+	MdArticle,
+	MdEmojiEvents,
+	MdOutlineMedicalInformation,
+} from "react-icons/md";
 import { RxDashboard } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import DbLogo from "../../../../partials/svg/DbLogo";
@@ -33,16 +37,16 @@ const DbNavigation = ({ pageHandler, setPageHanlder }) => {
 							pageHandler === "Dashboard" ? "active" : "font-medium"
 						}`}>
 						<RxDashboard />
-						<button onClick={() => handleChangeTab("dashboard")}>
+						<button onClick={() => handleChangeTab("Dashboard")}>
 							<Link to='/dashboard'>Dashboard</Link>
 						</button>
 					</li>
 					<li
 						className={`dbnav-link ${
-							pageHandler === "post" ? "active" : "font-medium"
+							pageHandler === "Post" ? "active" : "font-medium"
 						}`}>
-						<BiUserCircle />
-						<button onClick={() => handleChangeTab("post")}>
+						<MdArticle />
+						<button onClick={() => handleChangeTab("Post")}>
 							<Link to='/post'>Post</Link>
 						</button>
 					</li>

@@ -103,18 +103,29 @@
   }
 
   table th {
-    @apply py-4 px-2 text-left font-oswald
+    @apply py-4 px-2 text-left font-oswald text-center
     /* font-playfairB */
     ;
   }
 
   table td {
-    @apply p-5 text-left;
+    @apply p-5 text-left text-center;
   }
 
-  table tbody tr:nth-child(odd) {
-    @apply bg-primary bg-opacity-90;
+  table tbody tr:nth-child(even) {
+    @apply bg-stone-300 bg-opacity-90;
   }
+
+  table tbody tr {
+    @apply w-auto
+  }
+
+  .td-post {
+    @apply text-balance text-center;
+  }
+
+
+
 
   main {
     @apply transition-all duration-500;
@@ -203,7 +214,7 @@
     @apply space-y-4 mt-20;
 
     .dbnav-link {
-      @apply p-1 pl-8 flex flex-row gap-2 items-center text-lg;
+      @apply p-1 pl-8 border-l-2 border-transparent transition-all duration-700 flex flex-row gap-2 items-center text-lg;
 
       a {
         @apply p-2 flex gap-3 items-center;
@@ -211,7 +222,7 @@
     }
 
     .dbnav-link.active {
-      @apply border-l border-accent;
+      @apply border-l-2 border-accent transition-all duration-700;
 
       a {
         @apply text-accent;
