@@ -1,6 +1,7 @@
 import React from "react";
+import { devBaseImgUrl } from "../../../../helpers/functions-general";
 
-const Card = ({ height = "lg" }) => {
+const Card = ({ height = "lg", item, key }) => {
 	return (
 		<div className='card__lg shadow-[4px_2px_10px_5px_rgba(0,0,0,0.1)]  p-5 rounded-2xl mb-10'>
 			<div
@@ -8,7 +9,7 @@ const Card = ({ height = "lg" }) => {
 					height === "lg" ? "h-[500px]" : "h-[300px]"
 				}`}>
 				<img
-					src='https://via.placeholder.com/300x500'
+					src={`${devBaseImgUrl}/${item?.post_image}`}
 					alt=''
 					className={`w-full object-cover $ rounded-xl  h-full overflow-hidden  hover:scale-110 transition-transform`}
 				/>
@@ -17,18 +18,11 @@ const Card = ({ height = "lg" }) => {
 			<small
 				className='hover:bg-accent bg-stone-600  px-2 py-1 rounded-lg text-white font-bold 
                     text-xs'>
-				Travel
+				{item.tag_title}
 			</small>
 
-			<h3 className='my-4'>
-				Lorem ipsum dolor sit amet consectetur adipisicing.
-			</h3>
-			<p className='line-clamp-3 text-balance'>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-				dolores perspiciatis officia atque voluptatibus, magnam doloribus, neque
-				perferendis quaerat esse nobis maiores numquam quod sequi. Hic debitis
-				ullam alias blanditiis?
-			</p>
+			<h3 className='my-4'>{item?.post_article}</h3>
+			<p className='line-clamp-3 text-balance'>{item.post_article}</p>
 
 			<div className='flex justify-between items-center mt-4'>
 				<div className='flex gap-3 items-center'>

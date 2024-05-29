@@ -1,20 +1,50 @@
 import React from "react";
-import { BiPhoneCall, BiUserCircle } from "react-icons/bi";
-import { IoIosHome } from "react-icons/io";
-import {
-	MdArticle,
-	MdEmojiEvents,
-	MdOutlineMedicalInformation,
-} from "react-icons/md";
-import { RxDashboard } from "react-icons/rx";
+import { MdOutlineDashboard } from "react-icons/md";
 import { Link } from "react-router-dom";
 import DbLogo from "../../../../partials/svg/DbLogo";
-import { CiGlobe } from "react-icons/ci";
+import { AiOutlineMessage } from "react-icons/ai";
+import { motion } from "framer-motion";
 
-const DbNavigation = ({ pageHandler, setPageHanlder }) => {
+const DbNavigation = ({ menu }) => {
 	const handleChangeTab = (navChange) => {
 		setPageHanlder(navChange);
 	};
+	const navList = [
+		{
+			menu: "dashboard",
+			url: "/dashboard",
+			icon: <AiOutlineMessage />,
+			name: "Dashboard",
+		},
+		{
+			menu: "users",
+			url: "/users",
+			icon: <AiOutlineMessage />,
+			name: "Users",
+			subnav: ["Header1", "Header2", "Header3", "Header4", "Header5"],
+		},
+		{
+			menu: "post",
+			url: "/post",
+			icon: <AiOutlineMessage />,
+			name: "Post",
+		},
+
+		{
+			menu: "category",
+			url: "/category",
+			icon: <MdOutlineDashboard />,
+			name: "Category",
+		},
+
+		{
+			menu: "tag",
+			url: "/tag",
+			icon: <MdOutlineDashboard />,
+			name: "Tag",
+		},
+	];
+
 	return (
 		<>
 			<aside className='px-4 py-6 w-[250px] h-screen border-r  border-line'>
@@ -25,40 +55,22 @@ const DbNavigation = ({ pageHandler, setPageHanlder }) => {
 						Bloge Posting
 					</h2>
 				</div>
+
 				<ul className='dbnav'>
-					<li className='dbnav-link'>
-						<button className='flex items-center'>
-							<CiGlobe />
-							<Link to='/home'>Main Website</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link  ${
-							pageHandler === "Dashboard" ? "active" : "font-medium"
-						}`}>
-						<RxDashboard />
-						<button onClick={() => handleChangeTab("Dashboard")}>
-							<Link to='/dashboard'>Dashboard</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link ${
-							pageHandler === "Post" ? "active" : "font-medium"
-						}`}>
-						<MdArticle />
-						<button onClick={() => handleChangeTab("Post")}>
-							<Link to='/post'>Post</Link>
-						</button>
-					</li>
-					<li
-						className={`dbnav-link ${
-							pageHandler === "Users" ? "active" : "font-medium"
-						}`}>
-						<BiUserCircle />
-						<button onClick={() => handleChangeTab("Users")}>
-							<Link to='/users'>Users</Link>
-						</button>
-					</li>
+					{navList.map((item, i) => (
+						<motion.li
+							className={`nav-link ${menu === item.menu ? "active" : ""}`}
+							key={i}
+							initial={{ opacity: 0, x: "-10px" }}
+							animate={{ opacity: 1, x: "0px" }}
+							exit={{ opacity: 0, x: "-10px" }}
+							transition={{ duration: 1, delay: i * 0.2 }}>
+							<Link to={`${item.url}`}>
+								{item.icon} {item.name}
+							</Link>
+							{item.subnav.data.map((item, k) => (d))}
+						</motion.li>
+					))}
 				</ul>
 			</aside>
 		</>

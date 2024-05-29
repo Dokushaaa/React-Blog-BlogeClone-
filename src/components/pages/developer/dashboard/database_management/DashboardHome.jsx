@@ -23,73 +23,11 @@ const DashboardHome = () => {
 			searchValue: keyword,
 		}
 	);
-	// about counter
-	const { data: about } = useQueryData(
-		isSearch ? "/v1/about/search" : "/v1/about", // endpoint
-		isSearch ? "post" : "get", // method
-		"about", //key
-		// ["about", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
-	// proglang counter
-	const { data: proglang } = useQueryData(
-		isSearch ? "/v1/proglang/search" : "/v1/proglang", // endpoint
-		isSearch ? "post" : "get", // method
-		"proglang", //key
-		// ["proglang", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
-	// projects counter
-	const { data: projects } = useQueryData(
-		isSearch ? "/v1/projects/search" : "/v1/projects", // endpoint
-		isSearch ? "post" : "get", // method
-		"projects", //key
-		// ["projects", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
-	// certs counter
-	const { data: certs } = useQueryData(
-		isSearch ? "/v1/certs/search" : "/v1/certs", // endpoint
-		isSearch ? "post" : "get", // method
-		"certs", //key
-		// ["certs", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
-	// background counter
-	const { data: background } = useQueryData(
-		isSearch ? "/v1/background/search" : "/v1/background", // endpoint
-		isSearch ? "post" : "get", // method
-		"background", //key
-		// ["background", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
-	// contacts counter
-	const { data: contacts } = useQueryData(
-		isSearch ? "/v1/contacts/search" : "/v1/contacts", // endpoint
-		isSearch ? "post" : "get", // method
-		"contacts", //key
-		// ["contacts", isSearch],
-		{
-			searchValue: keyword,
-		}
-	);
+
 	return (
 		<section className='flex overflow-x-hidden'>
 			{/* set tab menu if active later */}
-			<DbNavigation
-				pageHandler={pageHandler}
-				setPageHanlder={setPageHanlder}
-			/>
+			<DbNavigation menu='dashboard' />
 			<main className='w-[calc(100%-250px)] '>
 				<DbHeader />
 				<div className='flex flex-row items-center'>

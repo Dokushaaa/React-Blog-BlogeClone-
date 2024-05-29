@@ -44,7 +44,6 @@ Class User {
                 // "user_password" => $this->user_password,
                 "user_is_active" => $this->user_is_active,
                 "user_key" => $this->user_key,
-                "user_email" => $this->user_email,
                 "user_created" => $this->user_created,
                 "user_datetime" => $this->user_datetime,
              ]);

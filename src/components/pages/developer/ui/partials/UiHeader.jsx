@@ -90,7 +90,7 @@ const UiHeader = () => {
 						<li>
 							<Link
 								className='flex items-center gap-5 font-bold transition-color hover:text-accent active:text-accent'
-								to='#'>
+								to='/home'>
 								Home <FaAngleDown />
 							</Link>
 						</li>

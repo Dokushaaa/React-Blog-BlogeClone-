@@ -179,6 +179,13 @@ function checkCreate($object)
     return $query;
 }
 
+// Check by boolean all
+function checkReadByFeatured($object)
+{
+    $query = $object->readByFeatured();
+    checkQuery($query, "There is problem with reading your featured Data (readByFeatured)");
+    return $query;
+}
 // Read all
 function checkReadAll($object)
 {

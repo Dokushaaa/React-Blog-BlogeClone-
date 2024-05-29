@@ -1,16 +1,20 @@
 import React from "react";
 import { FiPlus } from "react-icons/fi";
+import { setIsAdd } from "../../../../../../store/StoreAction";
+import { StoreContext } from "../../../../../../store/StoreContext";
 import useQueryData from "../../../../../custom-hook/useQueryData";
 import Toast from "../../../../../partials/Toast";
 import ModalError from "../../../../../partials/modals/ModalError";
 import DbHeader from "../DbHeader";
 import DbNavigation from "../DbNavigation";
-import { setIsAdd } from "../../../../../../store/StoreAction";
-import { StoreContext } from "../../../../../../store/StoreContext";
 // changeables
+import { FaCertificate, FaCode } from "react-icons/fa";
+import { MdCastForEducation } from "react-icons/md";
 import ModalAddPost from "./ModalAddPost";
 import PostTable from "./PostTable";
-
+import { GrProjects } from "react-icons/gr";
+import { motion, AnimatePresence } from "framer-motion";
+import Searchbar from "../../../ui/partials/Searchbar";
 const PostHome = () => {
 	const { store, dispatch } = React.useContext(StoreContext);
 	// const { store, dispatch } = React.useContext(StoreContext);
@@ -32,38 +36,46 @@ const PostHome = () => {
 			searchValue: keyword,
 		}
 	);
+	const { data: category } = useQueryData(
+		"/v1/category", // endpoint
+		"get", // method
+		"category" // key
+	);
 	// add post row:
 	const handleAdd = () => {
 		// callbacks via store folder
 		dispatch(setIsAdd(true));
 		setItemEdit(null);
 	};
+
 	return (
-		<section className='flex overflow-x-hidden'>
-			{/* set tab menu if active later */}
-			<DbNavigation
-				pageHandler={pageHandler}
-				setPageHanlder={setPageHanlder}
-			/>
-			<main className='w-[calc(100%-250px)]'>
+		<section className='flex overflow-hidden'>
+			<DbNavigation menu='post' />
+
+			<main className='w-[calc(100%-250px)] overflow-x-hidden'>
 				<DbHeader />
-				<div className='flex relative'>
-					<div className={`main-wrapper transition-all px-4 py-3 w-full`}>
+
+				<div className='flex '>
+					<div
+						className={`main-wrapper transition-all px-4 py-3  sticky top-0 w-full`}>
 						<div className='flex justify-between items-center'>
-							<h1 className='leading-none mb-0'>Post Database</h1>
+							<h1>Post Database</h1>
 						</div>
-						<div className='tab flex justify-between items-center my-8 border-b border-line '>
-							{/* <StudentSearchBar
-								setIsSeach={setIsSeach}
-								setKeyword={setKeyword}
-							/> */}
-							<h1>Search This</h1>
-							<button
-								className='btn btn--accent flex items-center gap-2'
-								onClick={handleAdd}>
-								Add New
-								<FiPlus />
-							</button>
+
+						<div className='tab flex justify-between items-center mt-8 border-b border-line mb-8 '>
+							<div className='input-wrap text-content'>
+								<Searchbar
+									setIsSeach={setIsSearch}
+									setKeyword={setKeyword}
+								/>
+							</div>
+							<div className='btn-div'>
+								<button
+									className='btn btn--accent'
+									onClick={handleAdd}>
+									<FiPlus /> New
+								</button>
+							</div>
 						</div>
 
 						{pageHandler === "Post" && (
@@ -72,12 +84,20 @@ const PostHome = () => {
 								isLoading={isLoading}
 								post={post}
 								isFetching={isFetching}
+								category={category}
 							/>
 						)}
 					</div>
 				</div>
 			</main>
-			{store.isAdd && <ModalAddPost itemEdit={itemEdit} />}
+			<AnimatePresence>
+				{store.isAdd && (
+					<ModalAddPost
+						itemEdit={itemEdit}
+						position='center'
+					/>
+				)}
+			</AnimatePresence>
 			{store.success && <Toast />}
 			{store.error && <ModalError position={"center"} />}
 		</section>

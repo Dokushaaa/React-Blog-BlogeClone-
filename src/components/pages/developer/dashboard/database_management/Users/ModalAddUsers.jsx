@@ -21,6 +21,7 @@ import ModalWrapper from "../../../../../partials/modals/ModalWrapper";
 import SpinnerButton from "../../../../../partials/spinners/SpinnerButton";
 import useUploadPhoto from "../../../../../custom-hook/useUploadPhoto";
 import { devBaseImgUrl } from "../../../../../helpers/functions-general";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ModalAddUsers = ({ itemEdit, user }) => {
 	const { dispatch, store } = React.useContext(StoreContext);
@@ -60,7 +61,11 @@ const ModalAddUsers = ({ itemEdit, user }) => {
 	return (
 		<>
 			<ModalWrapper>
-				<div className='main-modal w-[300px] bg-primary text-content h-full'>
+				<motion.div
+					className='main-modal w-[400px] bg-secondary text-content h-screen'
+					initial={{ opacity: 0, y: "50px" }}
+					animate={{ opacity: 1, y: "0" }}
+					exit={{ opacity: 0, y: "50px" }}>
 					<div className='modal-header p-4 relative'>
 						<h2>{itemEdit ? "Edit" : "New"} User?</h2>
 
@@ -113,7 +118,7 @@ const ModalAddUsers = ({ itemEdit, user }) => {
 							</Form>
 						</Formik>
 					</div>
-				</div>
+				</motion.div>
 			</ModalWrapper>
 		</>
 	);

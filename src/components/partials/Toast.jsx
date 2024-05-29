@@ -15,7 +15,7 @@ const Toast = () => {
 	handleClose();
 
 	return (
-		<div className='fixed top-3 left-1/2 -translate-x-1/2 p-1 px-3 bg-primarys rounded-md border border-green-500'>
+		<div className='fixed top-3 left-1/2 -translate-x-1/2 p-1 px-3 bg-primary rounded-md border border-green-500'>
 			<div className='flex gap-2 items-center'>
 				<FaCheckCircle className='text-green-500' />
 				<p className='mb-0 text-xs'>{store.message}</p>

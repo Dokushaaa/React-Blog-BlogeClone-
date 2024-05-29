@@ -11,6 +11,7 @@ import ModalConfirm from "../../../../../partials/modals/ModalConfirm";
 import ModalDelete from "../../../../../partials/modals/ModalDelete";
 import NoData from "../../../../../partials/NoData";
 import TableLoader from "../../../../../partials/TableLoader";
+import useQueryData from "../../../../../custom-hook/useQueryData";
 
 const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 	let counter = 1;
@@ -42,6 +43,25 @@ const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 		dispatch(setIsDelete(true));
 		setId(item.post_aid);
 	};
+	const { data: category } = useQueryData(
+		"/v1/category", // endpoint
+		"get", // method
+		"category" // key
+	);
+	// console.log();
+	// if ( === "wes") {
+	// }
+
+	const getTrending = () =>
+		post?.data.filter((item) => item.post_category_id == 1);
+	const getFeatured = () =>
+		post?.data.filter((item) => item.post_category_id == 2);
+	const getFashionNStyle = () =>
+		post?.data.filter((item) => item.post_category_id == 3);
+	const getPopular = () =>
+		post?.data.filter((item) => item.post_category_id == 4);
+	const getHeadline = () =>
+		post?.data.filter((item) => item.post_category_id == 5);
 	return (
 		<>
 			<div>
@@ -53,12 +73,13 @@ const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 								<th className='w-[100px]'>Seq ID : Attr Id</th>
 								<th className='w-[100px]'>Title</th>
 								<th className='w-[100px]'>Category</th>
+								<th className='w-[100px]'>Tag</th>
+								<th className='w-[100px]'>Featured</th>
 								<th className='w-[200px]'>Image</th>
 								<th className='w-[180px]'>Author</th>
 								<th className='w-[250px]'>Article</th>
 								<th className='w-[100px]'>IsActive</th>
-								<th className='w-[150px]'>Last Updated</th>
-								<th className='w-[150px]'>Created When</th>
+
 								<th className='w-[100px]'>Actions</th>
 							</tr>
 						</thead>
@@ -75,7 +96,6 @@ const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 									</td>
 								</tr>
 							)}
-
 							{post?.data.length === 0 && (
 								<tr>
 									<td colSpan={9}>
@@ -83,6 +103,74 @@ const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 									</td>
 								</tr>
 							)}
+							{/* {`${}`?.data.map((item, key) => ( */}
+							{/* {!isLoading &&
+								getHeadline()
+									.slice(0, 10)
+									.map((item, key) => (
+										<tr
+											className='td-post'
+											key={key}>
+											<td>
+												{counter++} : {item.post_aid}
+											</td>
+											<td>{item.post_title}</td>
+											<td>{item.category_title}</td>
+											<td className='text-balance  break-all'>
+												{item.post_image}
+											</td>
+											<td>{item.post_author}</td>
+											<td>{item.post_article}</td>
+											<td>
+												{item.post_is_active === 1 ? "Active" : "In-Active"}
+											</td>
+											<td>{item.post_datetime}</td>
+											<td>{item.post_created}</td>
+											<td className='table-action'>
+												<ul>
+													{item.post_is_active ? (
+														<>
+															<li>
+																<button
+																	className='tooltip'
+																	data-tooltip='Archive'
+																	onClick={() => handleArchive(item)}>
+																	<PiArchive />
+																</button>
+															</li>
+															<li>
+																<button
+																	className='tooltip'
+																	onClick={() => handleEdit(item)}
+																	data-tooltip='Edit'>
+																	<LiaEdit />
+																</button>
+															</li>
+														</>
+													) : (
+														<>
+															<li>
+																<button
+																	className='tooltip'
+																	data-tooltip='Restore'
+																	onClick={() => handleRestore(item)}>
+																	<LiaHistorySolid />
+																</button>
+															</li>
+															<li>
+																<button
+																	className='tooltip'
+																	data-tooltip='Delete'
+																	onClick={() => handleDelete(item)}>
+																	<LiaTrashAltSolid />
+																</button>
+															</li>
+														</>
+													)}
+												</ul>
+											</td>
+										</tr>
+									))} */}
 
 							{post?.data.map((item, key) => (
 								<tr
@@ -92,13 +180,13 @@ const PostTable = ({ isLoading, post, isFetching, setItemEdit }) => {
 										{counter++} : {item.post_aid}
 									</td>
 									<td>{item.post_title}</td>
-									<td>{item.post_category}</td>
+									<td>{item.category_title}</td>
+									<td>{item.tag_title}</td>{" "}
+									<td>{item.post_is_featured === 1 ? "Yes" : "No"}</td>
 									<td className='text-balance  break-all'>{item.post_image}</td>
 									<td>{item.post_author}</td>
 									<td>{item.post_article}</td>
 									<td>{item.post_is_active === 1 ? "Active" : "In-Active"}</td>
-									<td>{item.post_datetime}</td>
-									<td>{item.post_created}</td>
 									<td className='table-action'>
 										<ul>
 											{item.post_is_active ? (

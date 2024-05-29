@@ -10,6 +10,7 @@ import { setIsAdd } from "../../../../../../store/StoreAction";
 import { StoreContext } from "../../../../../../store/StoreContext";
 import ModalAddUsers from "./ModalAddUsers";
 import UsersTable from "./UsersTable";
+import { motion, AnimatePresence } from "framer-motion";
 
 const UsersHome = () => {
 	const { store, dispatch } = React.useContext(StoreContext);
@@ -42,10 +43,7 @@ const UsersHome = () => {
 	return (
 		<section className='flex overflow-x-hidden'>
 			{/* set tab menu if active later */}
-			<DbNavigation
-				pageHandler={pageHandler}
-				setPageHanlder={setPageHanlder}
-			/>
+			<DbNavigation menu='users' />
 			<main className='w-[calc(100%-250px)]'>
 				<DbHeader />
 				<div className='flex relative'>
@@ -78,7 +76,9 @@ const UsersHome = () => {
 					</div>
 				</div>
 			</main>
-			{store.isAdd && <ModalAddUsers itemEdit={itemEdit} />}
+			<AnimatePresence>
+				{store.isAdd && <ModalAddUsers itemEdit={itemEdit} />}
+			</AnimatePresence>
 			{store.success && <Toast />}
 			{store.error && <ModalError position={"center"} />}
 		</section>
